@@ -17,15 +17,16 @@ class PokerCardHand:
 
     def is_high_card(self):
 
-        for current_card_index in range(len(self.card)):
-            current_card_value = self.card[current_card_index].value
-            if self.found_card_with_same_value(current_card_value, current_card_index+1):
+        for card in self.card:
+            if self.get_count_of_same_value(card.value) > 1:
                 return False
 
         return True
 
-    def found_card_with_same_value(self, search_value, start_index):
-        for card in self.card[start_index:]:
+    def get_count_of_same_value(self, search_value):
+        count = 0
+        for card in self.card:
             if search_value == card.value:
-                return True
-        return False
+                count += 1
+
+        return count
