@@ -26,3 +26,19 @@ class TestPoker(unittest.TestCase):
         result = card_hand.is_high_card()
 
         self.assertTrue(result)
+
+    def test_given_one_pair_card_hand_input_when_check_is_high_card_should_return_false(self):
+        card_hand_input = ("AS", "3D", "3C", "JS", "QC")
+        card_hand = PokerCardHand(card_hand_input)
+
+        result = card_hand.is_high_card()
+
+        self.assertFalse(result)
+
+    def test_given_one_pair_card_hand_input_when_check_is_pair_should_return_true(self):
+        card_hand_input = ("AS", "3D", "3C", "JS", "QC")
+        card_hand = PokerCardHand(card_hand_input)
+
+        result = card_hand.is_pair()
+
+        self.assertTrue(result)

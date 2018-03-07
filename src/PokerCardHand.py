@@ -30,3 +30,10 @@ class PokerCardHand:
                 count += 1
 
         return count
+
+    def is_pair(self):
+        for card in self.card:
+            if self.get_count_of_same_value(card.value) == 2:
+                return True
+
+        return False
