@@ -17,4 +17,12 @@ class TestPoker(unittest.TestCase):
 
         card_hand = PokerCardHand(card_hand_input)
 
-        self.assertEquals("AS,3D,3C,JS,QC", card_hand.get_card_hand_in_string())
+        self.assertEqual("AS3D3CJSQC", card_hand.get_card_hand_in_string())
+
+    def test_given_one_high_card_hand_input_when_check_is_high_card_should_return_true(self):
+        card_hand_input = ("AS", "3D", "6C", "JS", "QC")
+        card_hand = PokerCardHand(card_hand_input)
+
+        result = card_hand.is_high_card()
+
+        self.assertTrue(result)
