@@ -50,3 +50,12 @@ class TestPoker(unittest.TestCase):
         result = card_hand.is_pair()
 
         self.assertFalse(result)
+
+    def test_given_straight_card_hand_input_when_check_is_straight_should_return_true(self):
+        card_hand_input = ("3S", "4D", "5C", "6S", "7C")
+        card_hand = PokerCardHand(card_hand_input)
+
+        result = card_hand.is_straight()
+
+        self.assertTrue(result)
+
