@@ -67,11 +67,27 @@ class TestPoker(unittest.TestCase):
 
         self.assertTrue(result)
 
-    def test_given_23456_straight_card_hand_input_when_check_is_straight_should_return_false(self):
+    def test_given_23456_straight_card_hand_input_when_check_is_straight_should_return_true(self):
         card_hand_input = ("6S", "2D", "3C", "4S", "5C")
         card_hand = PokerCardHand(card_hand_input)
 
         result = card_hand.is_straight()
 
-        self.assertFalse(result)
+        self.assertTrue(result)
+
+    def test_given_10JQKA_straight_card_hand_input_when_check_is_straight_should_return_true(self):
+        card_hand_input = ("10S", "JD", "QC", "KS", "AC")
+        card_hand = PokerCardHand(card_hand_input)
+
+        result = card_hand.is_straight()
+
+        self.assertTrue(result)
+
+    def test_given_10JQKA_straight_card_hand_input_when_check_is_straight_should_return_true(self):
+        card_hand_input = ("10S", "JD", "QC", "KS", "AC")
+        card_hand = PokerCardHand(card_hand_input)
+
+        result = card_hand.is_straight()
+
+        self.assertTrue(result)
 

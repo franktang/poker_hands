@@ -3,7 +3,7 @@ from PokerCard import PokerCard
 
 class PokerCardHand:
     cards = []
-    execlude_straight_pattern = ("23456")
+    include_straight_pattern = ("A10JQK")
 
     def __init__(self, card_hand_input):
         self.cards.clear()
@@ -41,7 +41,7 @@ class PokerCardHand:
 
     def is_straight(self):
         sorted_card_list = sorted(self.cards, key=lambda card: card.rank)
-        return self.is_continous(sorted_card_list) and not(self.is_execluded_straight_pattern(sorted_card_list))
+        return self.is_continous(sorted_card_list) or (self.is_include_straight_pattern(sorted_card_list))
 
     def is_continous(self, sorted_card_list):
         for index in range(1, len(sorted_card_list)):
@@ -49,12 +49,12 @@ class PokerCardHand:
                 return False
         return True
 
-    def is_execluded_straight_pattern(self, sorted_card_list):
+    def is_include_straight_pattern(self, sorted_card_list):
         cards_value_string = ""
         for card in sorted_card_list:
             cards_value_string += card.value
 
-        if cards_value_string in self.execlude_straight_pattern:
+        if cards_value_string in self.include_straight_pattern:
             return True
         return False
 
