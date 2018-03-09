@@ -19,8 +19,8 @@ class PokerCard:
     }
 
     def __init__(self, card_input):
-        self.value = card_input[0]
-        self.suit = card_input[1]
+        self.value = card_input[:-1]
+        self.suit = card_input[-1]
         self.rank = self.straight_rank_map[self.value]
 
     def get_card_in_string(self):
