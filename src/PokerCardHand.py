@@ -58,3 +58,10 @@ class PokerCardHand:
             return True
         return False
 
+    def is_three_of_a_kind(self):
+        for card in self.cards:
+            if self.get_count_of_same_value(card.value) == 3:
+                return True
+
+        return False
+

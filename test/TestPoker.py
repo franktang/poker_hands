@@ -91,3 +91,10 @@ class TestPoker(unittest.TestCase):
 
         self.assertTrue(result)
 
+    def test_given_three_of_a_kind_card_hand_input_when_check_is_three_of_a_kind_should_return_true(self):
+        card_hand_input = ("AS", "3D", "3C", "3S", "QC")
+        card_hand = PokerCardHand(card_hand_input)
+
+        result = card_hand.is_three_of_a_kind()
+
+        self.assertTrue(result)
