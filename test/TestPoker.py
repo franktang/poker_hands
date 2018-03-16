@@ -98,3 +98,22 @@ class TestPoker(unittest.TestCase):
         result = card_hand.is_three_of_a_kind()
 
         self.assertTrue(result)
+
+    def test_given_flush_card_hand_input_when_check_is_flush_should_return_true(self):
+        card_hand_input = ("AS", "5S", "3S", "9S", "JS")
+        card_hand = PokerCardHand(card_hand_input)
+        self.assertEqual("FLUSH", card_hand.determine_category())
+
+    def test_given_full_house_when_determine_category_return_full_house(self):
+        card_hand_input = ("AC", "AD", "9D", "9S", "AS")
+        card_hand = PokerCardHand(card_hand_input)
+        self.assertEqual("FULL_HOUSE", card_hand.determine_category())
+
+    def test_given_royal_flush_hand_input_when_determine_category_return_royal_flush(self):
+        card_hand_input = ("AS", "2S", "4S", "3S", "5S")
+        card_hand = PokerCardHand(card_hand_input)
+        self.assertEqual("ROYAL_FLUSH", card_hand.determine_category())
+
+
+if __name__ == '__main__':
+    unittest.main(verbosity=2)

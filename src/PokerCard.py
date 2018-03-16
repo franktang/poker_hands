@@ -1,6 +1,6 @@
 class PokerCard:
-    value = "3"
-    suit = "D"
+    value = None
+    suit = None
     rank = 1
     straight_rank_map = {
         "3": 3,
