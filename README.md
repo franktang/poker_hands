@@ -1,6 +1,6 @@
 # poker_hands
 
-[![Build Status](https://travis-ci.org/franktang/poker_hands.svg?branch=dev)](https://travis-ci.org/franktang/poker_hands)
+[![Build Status](https://api.travis-ci.org/franktang/poker_hands.svg)](https://travis-ci.org/franktang/poker_hands)
 
 
 ### Git Repo URL
