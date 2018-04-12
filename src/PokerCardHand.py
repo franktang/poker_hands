@@ -1,4 +1,4 @@
-from PokerCard import PokerCard
+from src.PokerCard import PokerCard
 
 
 class PokerCardHand:

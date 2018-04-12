@@ -1,8 +1,8 @@
 import unittest
 
-from PokerCardHand import PokerCardHand
-from PokerCard import PokerCard
-from PokerCardHand import *
+from src.PokerCardHand import PokerCardHand
+from src.PokerCard import PokerCard
+from src.PokerCardHand import *
 
 
 class TestPoker(unittest.TestCase):
