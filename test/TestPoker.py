@@ -3,6 +3,7 @@ import unittest
 from src.PokerCardHand import PokerCardHand
 from src.PokerCard import PokerCard
 from src.PokerCardHand import *
+from src.PokerGame import *
 
 
 class TestPoker(unittest.TestCase):
@@ -114,6 +115,16 @@ class TestPoker(unittest.TestCase):
         card_hand_input = ("AS", "2S", "4S", "3S", "5S")
         card_hand = PokerCardHand(card_hand_input)
         self.assertEqual("ROYAL_FLUSH", card_hand.determine_category())
+
+    def test_given_two_players_with_5cards_on_different_category_when_play_should_return_correct_winner(self):
+        card_hand_input = ("AS", "2S", "4S", "3S", "5S")
+        card_hand_input_2 = ("AC", "AD", "9D", "9S", "AS")
+        card_hand = PokerCardHand(card_hand_input)
+        card_hand_2 = PokerCardHand(card_hand_input_2)
+
+        result = PokerGame.compare(card_hand, card_hand_2)
+
+        self.assertEqual("AS2S4S3S5S", result)
 
 
 if __name__ == '__main__':

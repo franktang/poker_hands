@@ -2,12 +2,10 @@ from src.PokerCard import PokerCard
 
 
 class PokerCardHand:
-    cards = []
-    card_hand_input = ()
     include_straight_pattern = ("A10JQK")
 
     def __init__(self, card_hand_input):
-        self.cards.clear()
+        self.cards = []
         for card in card_hand_input:
             self.cards.append(PokerCard(card))
 
