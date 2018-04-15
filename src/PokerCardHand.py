@@ -6,6 +6,15 @@ class PokerCardHand:
 
     def __init__(self, card_hand_input):
         self.cards = []
+        self.strategy_list = [
+            RoyalFlushStrategy(),
+            FullHouseStrategy(),
+            FlushStrategy(),
+            StraightStrategy(),
+            ThreeOfAKindStrategy(),
+            PairStrategy(),
+            HighCardStrategy()
+        ]
         for card in card_hand_input:
             self.cards.append(PokerCard(card))
 
@@ -14,7 +23,6 @@ class PokerCardHand:
         for card in self.cards:
             output_string += card.get_card_in_string()
         return output_string
-
 
     @staticmethod
     def get_count_of_same_value_static(cards, search_value):
@@ -35,7 +43,7 @@ class PokerCardHand:
     @staticmethod
     def is_continous_static(sorted_card_list):
         for index in range(1, len(sorted_card_list)):
-            if sorted_card_list[index].rank - sorted_card_list[index-1].rank != 1:
+            if sorted_card_list[index].rank - sorted_card_list[index - 1].rank != 1:
                 return False
         return True
 
@@ -51,26 +59,21 @@ class PokerCardHand:
         return False
 
     def determine_category(self):
-        strategy_list = [
-            RoyalFlushStrategy(),
-            FullHouseStrategy(),
-            FlushStrategy(),
-            StraightStrategy(),
-            ThreeOfAKindStrategy(),
-            PairStrategy(),
-            HighCardStrategy()
-        ]
-
-        for strategy in strategy_list:
+        for strategy in self.strategy_list:
             if strategy.is_obey_this_strategy(self.cards):
                 return strategy.category_name
 
+    def get_strategy(self):
+        for strategy in self.strategy_list:
+            if strategy.is_obey_this_strategy(self.cards):
+                return strategy
 
 
 class CategoryStrategy:
     category_name = ''
 
-    def determine_power(self):
+    @staticmethod
+    def determine_power(self, cards):
         raise NotImplemented
 
     @staticmethod
@@ -81,17 +84,20 @@ class CategoryStrategy:
 class RoyalFlushStrategy(CategoryStrategy):
     category_name = 'ROYAL_FLUSH'
 
-    def determine_power(self):
+    @staticmethod
+    def determine_power(self, cards):
         pass
 
     @staticmethod
     def is_obey_this_strategy(cards):
         return FlushStrategy.is_obey_this_strategy(cards) and StraightStrategy.is_obey_this_strategy(cards)
 
+
 class FullHouseStrategy(CategoryStrategy):
     category_name = 'FULL_HOUSE'
 
-    def determine_power(self):
+    @staticmethod
+    def determine_power(self, cards):
         pass
 
     @staticmethod
@@ -102,7 +108,8 @@ class FullHouseStrategy(CategoryStrategy):
 class FlushStrategy(CategoryStrategy):
     category_name = 'FLUSH'
 
-    def determine_power(self):
+    @staticmethod
+    def determine_power(self, cards):
         pass
 
     @staticmethod
@@ -116,19 +123,22 @@ class FlushStrategy(CategoryStrategy):
 class StraightStrategy(CategoryStrategy):
     category_name = 'STRAIGHT'
 
-    def determine_power(self):
+    @staticmethod
+    def determine_power(self, cards):
         pass
 
     @staticmethod
     def is_obey_this_strategy(cards):
         sorted_card_list = sorted(cards, key=lambda card: card.rank)
-        return PokerCardHand.is_continous_static(sorted_card_list) or (PokerCardHand.is_include_straight_pattern_static(sorted_card_list))
+        return PokerCardHand.is_continous_static(sorted_card_list) or (
+            PokerCardHand.is_include_straight_pattern_static(sorted_card_list))
 
 
 class ThreeOfAKindStrategy(CategoryStrategy):
     category_name = 'THREE_OF_A_KIND'
 
-    def determine_power(self):
+    @staticmethod
+    def determine_power(self, cards):
         pass
 
     @staticmethod
@@ -142,7 +152,8 @@ class ThreeOfAKindStrategy(CategoryStrategy):
 class PairStrategy(CategoryStrategy):
     category_name = 'PAIR'
 
-    def determine_power(self):
+    @staticmethod
+    def determine_power(self, cards):
         pass
 
     @staticmethod
@@ -156,7 +167,8 @@ class PairStrategy(CategoryStrategy):
 class HighCardStrategy(CategoryStrategy):
     category_name = 'HIGH_CARD'
 
-    def determine_power(self):
+    @staticmethod
+    def determine_power(self, cards):
         pass
 
     @staticmethod
