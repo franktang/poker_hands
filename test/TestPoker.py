@@ -126,6 +126,24 @@ class TestPoker(unittest.TestCase):
 
         self.assertEqual("AS2S4S3S5S", result)
 
+    def test_given_two_players_with_5cards_on_high_card_category_when_play_should_return_correct_winner(self):
+        card_hand_input = ("AS", "3D", "6C", "JS", "QC") #A
+        card_hand_input_2 = ("2S", "3D", "6C", "JS", "QC") #2
+        card_hand = PokerCardHand(card_hand_input)
+        card_hand_2 = PokerCardHand(card_hand_input_2)
+
+        result = PokerGame.compare(card_hand, card_hand_2)
+
+        self.assertEqual("AS2S4S3S5S", result)
+
+    def test_given_one_high_card_hand_can_get_the_highest_rank(self):
+        card_hand_input = ("AS", "3D", "6C", "JS", "QC")
+        card_hand = PokerCardHand(card_hand_input)
+
+        result = card_hand.get_highest_rank()
+
+        self.assertEquals(12, result)
+
 
 
 if __name__ == '__main__':

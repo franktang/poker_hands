@@ -43,7 +43,7 @@ class PokerCardHand:
     @staticmethod
     def is_continous_static(sorted_card_list):
         for index in range(1, len(sorted_card_list)):
-            if sorted_card_list[index].rank - sorted_card_list[index - 1].rank != 1:
+            if sorted_card_list[index].straight_rank - sorted_card_list[index - 1].straight_rank != 1:
                 return False
         return True
 
@@ -67,6 +67,11 @@ class PokerCardHand:
         for strategy in self.strategy_list:
             if strategy.is_obey_this_strategy(self.cards):
                 return strategy
+
+    def get_highest_rank(self):
+        sorted_list = sorted(self.cards, key=lambda card: card.rank, reverse=True)
+        return sorted_list[0].rank
+
 
 
 class CategoryStrategy:
@@ -129,7 +134,7 @@ class StraightStrategy(CategoryStrategy):
 
     @staticmethod
     def is_obey_this_strategy(cards):
-        sorted_card_list = sorted(cards, key=lambda card: card.rank)
+        sorted_card_list = sorted(cards, key=lambda card: card.straight_rank)
         return PokerCardHand.is_continous_static(sorted_card_list) or (
             PokerCardHand.is_include_straight_pattern_static(sorted_card_list))
 
